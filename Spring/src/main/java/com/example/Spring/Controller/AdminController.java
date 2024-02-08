@@ -42,7 +42,7 @@ public class AdminController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> updateDetail(@PathVariable Long id, @RequestBody Admin admindetails) {
         try {
-            Admin admin = adminService.updateEmployee(id, admindetails);
+            adminService.updateEmployee(id, admindetails);
             return new ResponseEntity<>("Successfully updated!!!", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Employee not found......", HttpStatus.NOT_FOUND);
