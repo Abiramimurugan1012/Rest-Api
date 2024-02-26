@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class AdminServiceTest {
@@ -62,7 +61,7 @@ public class AdminServiceTest {
         Long id=1L;
         when(adminRepo.findById(id)).thenReturn(Optional.empty());
         Object response=adminService.getEmployeeById(id);
-        Assertions.assertEquals("Employ not found......",response);
+        Assertions.assertEquals("Employee not found......",response);
     }
 
     @Test

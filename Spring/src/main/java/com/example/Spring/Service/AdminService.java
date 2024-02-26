@@ -29,7 +29,7 @@ public class AdminService {
         if (demo.isPresent()){
             return demo;
         }else {
-            return "Employ not found......";
+            return "Employee not found......";
         }
     }
 
