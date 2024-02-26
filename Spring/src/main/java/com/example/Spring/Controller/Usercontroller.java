@@ -36,7 +36,7 @@ public class Usercontroller {
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         try {
-            User updatedUser = userservice.updateUser(id,userDetails);
+             userservice.updateUser(id,userDetails);
             return new ResponseEntity<>("Successfully Updated!!!!!", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("User not found....",HttpStatus.NOT_FOUND);
