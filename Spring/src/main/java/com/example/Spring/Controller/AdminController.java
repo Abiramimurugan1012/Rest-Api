@@ -29,14 +29,20 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public Object getId(@PathVariable Long id) {
-        return  adminService.getEmployeeById(id);
+    public ResponseEntity<?> getId(@PathVariable Long id) {
+        Object admin = adminService.getEmployeeById(id);
+            if(admin!=null) {
+                return new ResponseEntity<>(admin, HttpStatus.OK);
+            }
+        else {
+            return new ResponseEntity<>("Employee not found.....", HttpStatus.NOT_FOUND);
+             }
     }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> updateDetail(@PathVariable Long id, @RequestBody Admin admindetails) {
         try {
-           adminService.updateEmployee(id, admindetails);
+            Admin admin = adminService.updateEmployee(id, admindetails);
             return new ResponseEntity<>("Successfully updated!!!", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Employee not found......", HttpStatus.NOT_FOUND);

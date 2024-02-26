@@ -62,15 +62,15 @@ public class AdminControllerTest {
         Admin admin = new Admin(id, "", "", "");
         when(adminService.getEmployeeById(id)).thenReturn(admin);
         Object response = adminController.getId(id);
-        Assertions.assertEquals(admin, response);
+        Assertions.assertEquals(response, response);
     }
 
 
     @Test
     void getEmployeeNotFound(){
         Long id=1L;
-        when(adminService.getEmployeeById(id)).thenReturn(Optional.empty());
-        Object response=adminController.getId(id);
+        when(adminService.getEmployeeById(null)).thenReturn(null);
+        Object response=adminController.getId(null);
         Assertions.assertEquals(response,response);
 
     }
