@@ -2,28 +2,23 @@ package com.example.Spring.ControllerTest;
 
 import com.example.Spring.Controller.AdminController;
 import com.example.Spring.Model.Admin;
-import com.example.Spring.Repo.AdminRepo;
 import com.example.Spring.Service.AdminService;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoSettings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-//@MockitoSettings
+
 public class AdminControllerTest {
     @InjectMocks
     private AdminController adminController;

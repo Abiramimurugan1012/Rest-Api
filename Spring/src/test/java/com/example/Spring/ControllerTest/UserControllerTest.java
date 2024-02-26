@@ -1,7 +1,6 @@
 package com.example.Spring.ControllerTest;
 
 import com.example.Spring.Controller.Usercontroller;
-import com.example.Spring.Model.Admin;
 import com.example.Spring.Model.User;
 import com.example.Spring.Service.Userservice;
 import org.junit.jupiter.api.Assertions;
@@ -13,8 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -63,13 +61,6 @@ public class UserControllerTest {
         assertEquals(response,response);
     }
 
-//    @Test
-//    void getUserByIdNotfound() {
-//        Long id=1L;
-//        when(userservice.getUserById(id)).thenReturn(Optional.empty());
-//        Object response=usercontroller.getUserById(id);
-//        assertEquals("User not Found.....",response);
-//    }
 
     @Test
     void updateUser() {
