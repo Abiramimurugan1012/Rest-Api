@@ -33,17 +33,16 @@ public class Userservice {
 
     }
 
-
-    public User updateUser(Long id, User userDetails) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepo.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("User not found")));
-            User user = optionalUser.get();
-            user.setName(userDetails.getName());
-            user.setAddress(userDetails.getAddress());
-            user.setPhone_no(userDetails.getPhone_no());
-            return userRepo.save(user);
-
-    }
+//    public User updateUser(Long id, User userDetails) {
+//        Optional<User> optionalUser = Optional.ofNullable(userRepo.findById(id)
+//                .orElseThrow(()-> new IllegalArgumentException("User not found")));
+//            User user = optionalUser.get();
+////            user.setName(userDetails.getName());
+//            user.setAddress(userDetails.getAddress());
+//            user.setPhone_no(userDetails.getPhone_no());
+//            return userRepo.save(user);
+//
+//    }
 
     public String  deleteUser(Long id){
         if(userRepo.findById(id).isPresent()) {
