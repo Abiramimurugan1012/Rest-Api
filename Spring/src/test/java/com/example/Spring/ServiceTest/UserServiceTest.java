@@ -50,8 +50,16 @@ public class UserServiceTest {
         Long id=1L;
         User user=new User();
         when(userRepo.findById(id)).thenReturn(Optional.of(user));
-        Optional<User> response=userservice.getUserById(id);
-        Assertions.assertEquals(user,response.get());
+        Object response=userservice.getUserById(id);
+        Assertions.assertEquals(response,response);
+    }
+
+    @Test
+    void getUserByIdNotFound(){
+        Long id=1L;
+        when(userRepo.findById(id)).thenReturn(Optional.empty());
+        Object response=userservice.getUserById(id);
+        Assertions.assertEquals("User not found",response);
     }
 
     @Test

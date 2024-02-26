@@ -29,14 +29,8 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getId(@PathVariable Long id) {
-        Optional<Admin> admin = adminService.getEmployeeById(id);
-            if(admin.isPresent()) {
-                return new ResponseEntity<>(admin, HttpStatus.OK);
-            }
-        else {
-            return new ResponseEntity<>("Employee not found.....", HttpStatus.NOT_FOUND);
-             }
+    public Object getId(@PathVariable Long id) {
+        return  adminService.getEmployeeById(id);
     }
 
     @PutMapping("/edit/{id}")

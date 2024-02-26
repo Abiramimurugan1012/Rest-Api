@@ -22,10 +22,14 @@ public class Userservice {
         return userRepo.save(user);
     }
 
-    public Optional<User> getUserById(Long id) {
-        return Optional.ofNullable(userRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found")));
-
+    public Object getUserById(Long id) {
+        Optional<User> user=userRepo.findById(id);
+        if (user.isPresent()){
+            return user;
+        }
+        else {
+            return "User not found";
+        }
 
     }
 

@@ -2,6 +2,7 @@ package com.example.Spring.Controller;
 
 import com.example.Spring.Model.User;
 import com.example.Spring.Service.Userservice;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class Usercontroller {
     @Autowired
     private Userservice userservice;
@@ -27,16 +29,8 @@ public class Usercontroller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id){
-
-
-            Optional<User> user = userservice.getUserById(id);
-            if (user.isPresent()){
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
-     else {
-            return new ResponseEntity<>("User not Found.....",HttpStatus.NOT_FOUND);
-        }
+    public Object getUserById(@PathVariable Long id){
+           return userservice.getUserById(id);  
     }
 
     @PutMapping("/edit/{id}")
@@ -52,8 +46,6 @@ public class Usercontroller {
     @DeleteMapping("/del/{id}")
     public String deleteUser(@PathVariable Long id){
         return  userservice.deleteUser(id);
-
-
     }
 
 }

@@ -24,8 +24,13 @@ public class AdminService {
         return adminRepo.save(admin);
     }
 
-    public Optional<Admin> getEmployeeById(Long id) {
-        return Optional.ofNullable(adminRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee not found")));
+    public Object getEmployeeById(Long id) {
+        Optional<Admin> demo=adminRepo.findById(id);
+        if (demo.isPresent()){
+            return demo;
+        }else {
+            return "Employ not found......";
+        }
     }
 
     public Admin updateEmployee(Long id, Admin admin) {
