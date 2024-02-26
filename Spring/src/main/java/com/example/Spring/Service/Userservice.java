@@ -32,7 +32,6 @@ public class Userservice {
         }
 
     }
-    //jfhjfh
 
     public User updateUser(Long id, User userDetails) {
         Optional<User> optionalUser = Optional.ofNullable(userRepo.findById(id)
