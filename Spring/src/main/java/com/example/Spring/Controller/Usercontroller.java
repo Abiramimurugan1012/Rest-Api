@@ -36,12 +36,13 @@ public class Usercontroller {
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         try {
-             userservice.updateUser(id,userDetails);
+            userservice.updateUser(id,userDetails);
             return new ResponseEntity<>("Successfully Updated!!!!!", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("User not found....",HttpStatus.NOT_FOUND);
         }
     }
+
 
     @DeleteMapping("/del/{id}")
     public String deleteUser(@PathVariable Long id){
