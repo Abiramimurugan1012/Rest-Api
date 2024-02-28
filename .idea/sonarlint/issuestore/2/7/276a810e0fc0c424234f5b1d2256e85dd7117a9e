@@ -1,0 +1,8 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…âáÖ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ
+A
+java:S1452%"&Remove usage of generic wildcard type.(“Â±’ûÿÿÿÿ
+J
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëÝüÿÿÿÿ
