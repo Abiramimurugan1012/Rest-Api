@@ -10,7 +10,11 @@ java:S5786@"Remove this 'public' modifier.(ø×…Šüÿÿÿÿ8ÖœúŞ1
 @
 java:S5786O"Remove this 'public' modifier.(Â¯¨ıÿÿÿÿ8ÖœúŞ1
 @
+<<<<<<< HEAD
 java:S5786"Remove this 'public' modifier.(”›Äôÿÿÿÿÿ8ÆÂáûŞ1
+=======
+java:S5786"Remove this 'public' modifier.(”›Äôÿÿÿÿÿ8ÖœúŞ1
+>>>>>>> bb0371422867bfae2e3b32d7a9643d4888be2244
 s
 java:S3415$"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(àƒÛ8ŸÖœúŞ1
 x
