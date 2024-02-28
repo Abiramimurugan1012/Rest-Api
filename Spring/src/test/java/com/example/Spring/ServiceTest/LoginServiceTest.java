@@ -33,7 +33,7 @@ public class LoginServiceTest {
         login.setPassword("asdf");
         when(loginRepo.findByUsername("Abi")).thenReturn(null);
         String data=loginService.signup(login);
-        Assertions.assertEquals(data,"its done");
+        Assertions.assertEquals(data,"Saved Successfully");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class LoginServiceTest {
         login.setPassword("asff");
         when(loginRepo.findByUsername("asd")).thenReturn(login);
         String data=loginService.signup(login);
-        Assertions.assertEquals(data,"user name is already register");
+        Assertions.assertEquals(data,"User name is already register");
     }
 
     @Test

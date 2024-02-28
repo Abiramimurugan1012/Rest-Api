@@ -20,10 +20,10 @@ public class LoginService {
             BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
             info.setPassword(bCryptPasswordEncoder.encode(data.getPassword()));
             loginRepo.save(info);
-            return "its done";
+            return "Saved Successfully";
         }
         else {
-            return "user name is already register";
+            return "User name is already register";
         }
     }
 

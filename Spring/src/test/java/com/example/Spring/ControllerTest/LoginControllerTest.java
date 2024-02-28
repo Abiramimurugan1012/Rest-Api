@@ -28,9 +28,9 @@ public class LoginControllerTest {
     @Test
     public void signup(){
         Login login=new Login();
-        when(loginService.signup(login)).thenReturn("its done");
+        when(loginService.signup(login)).thenReturn("");
         String response=loginController.signup(login);
-        Assertions.assertEquals(response,"its done");
+        Assertions.assertEquals(response,"");
     }
 
     @Test
