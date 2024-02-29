@@ -31,4 +31,7 @@ public class  LoginController {
     public String delete(@PathVariable String username){
         return loginService.deleteuser(username);
     }
+
+
+
 }
