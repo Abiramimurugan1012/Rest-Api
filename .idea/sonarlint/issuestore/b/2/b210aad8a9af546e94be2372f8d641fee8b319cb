@@ -2,9 +2,18 @@
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…âáÖ8Ö ÙøŞ1
 _
 <<<<<<< HEAD
+<<<<<<< HEAD
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û ÙøŞ1
+=======
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û ÙøŞ1
+f
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8²ÁáûŞ1
+>>>>>>> master
+=======
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û ÙøŞ1
 f
 java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8²ÁáûŞ1
 =======
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Û ÙøŞ1
 >>>>>>> bb0371422867bfae2e3b32d7a9643d4888be2244
+>>>>>>> origin/master
