@@ -42,5 +42,16 @@ public class LoginService {
             }
     }
 
+    public String deleteuser(String username){
+        Login get=loginRepo.findByUsername(username);
+        if(get!=null){
+            loginRepo.delete(get);
+            return "Deleted Successfully";
+        }
+        else {
+            return "User not found";
+        }
+    }
+
 
 }

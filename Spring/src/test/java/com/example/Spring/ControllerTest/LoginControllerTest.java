@@ -41,4 +41,11 @@ public class LoginControllerTest {
         Assertions.assertEquals(response,"");
     }
 
+    @Test
+    public void delete(){
+        when(loginService.deleteuser("")).thenReturn("");
+        String response=loginController.delete("");
+        Assertions.assertEquals(response,"");
+    }
+
 }

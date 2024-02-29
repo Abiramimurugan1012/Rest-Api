@@ -89,4 +89,22 @@ public class LoginServiceTest {
         Assertions.assertEquals(response,"Enter valid Username and password");
     }
 
+    @Test
+    public void deleteUser(){
+        Login login=new Login();
+        login.setUsername("Abi");
+        when(loginRepo.findByUsername("Abi")).thenReturn(login);
+        String response=loginService.deleteuser("Abi");
+        Assertions.assertEquals(response,"Deleted Successfully");
+    }
+
+    @Test
+    public void deleteUserNotFound() {
+        Login login=new Login();
+        login.setUsername("asd");
+        when(loginRepo.findByUsername("asd")).thenReturn(null);
+        String response=loginService.deleteuser("");
+        Assertions.assertEquals(response,"User not found");
+    }
+
 }
