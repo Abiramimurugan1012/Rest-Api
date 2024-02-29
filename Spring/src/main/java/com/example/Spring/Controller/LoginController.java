@@ -5,10 +5,7 @@ import com.example.Spring.Model.Login;
 import com.example.Spring.Service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -27,5 +24,11 @@ public class  LoginController {
     @PostMapping("/login")
     public String login(@RequestBody Login login){
         return loginService.login(login);
+    }
+
+
+    @DeleteMapping("/{username}")
+    public String delete(@PathVariable String username){
+        return loginService.deleteuser(username);
     }
 }
