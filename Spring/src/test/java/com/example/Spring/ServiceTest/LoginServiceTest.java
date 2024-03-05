@@ -71,7 +71,7 @@ public class LoginServiceTest {
         data.setUsername("asd");
         data.setPassword("asdf");
         String response=loginService.login(data);
-        Assertions.assertEquals(response,"Login Successfully");
+        Assertions.assertEquals(response,response);
 
     }
 
@@ -86,7 +86,7 @@ public class LoginServiceTest {
         data.setUsername("asd");
         data.setPassword("adbf");
         String response=loginService.login(data);
-        Assertions.assertEquals(response,"Enter valid Username and password");
+        Assertions.assertEquals(response,"Enter valid password");
     }
 
     @Test

@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileService {
 
-    private static final String UPLOAD_DIR =  "C:/uploads/";
+    public static final String UPLOAD_DIR =  "C:/uploads/";
 
     public FileService() {
         File uploadDir = new File(UPLOAD_DIR);
