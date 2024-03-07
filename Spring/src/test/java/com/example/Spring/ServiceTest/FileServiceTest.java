@@ -1,9 +1,11 @@
 package com.example.Spring.ServiceTest;
 
+import com.example.Spring.Exception.FileStorageException;
 import com.example.Spring.Service.FileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,12 +16,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 
 public class FileServiceTest {
 
     @InjectMocks
     FileService fileService;
+
+    @Mock
+    MultipartFile multipartFile;
+
+    @Mock
+    Files files;
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.openMocks(this);
@@ -44,8 +55,31 @@ public class FileServiceTest {
         Files.deleteIfExists(filePath);
     }
 
+    @Test
+    public void testStoreFile_IOException() throws IOException {
+        doThrow(new IOException()).when(multipartFile).getInputStream();
+        assertThrows(FileStorageException.class, () -> {
+            fileService.storeFile(multipartFile);
+        });
+    }
 
-   }
+    @Test
+    public void testStoreFile_FailedToCreateUploadDirectory() throws IOException {
+        doThrow(new IOException()).when(multipartFile).getInputStream();
+        assertThrows(FileStorageException.class, () -> {
+            fileService.storeFile(multipartFile);
+        });
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 
