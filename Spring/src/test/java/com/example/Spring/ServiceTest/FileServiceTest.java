@@ -1,30 +1,20 @@
 package com.example.Spring.ServiceTest;
 
-import com.example.Spring.Exception.FileStorageException;
 import com.example.Spring.Service.FileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
-import static org.hibernate.internal.util.ExceptionHelper.doThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 
 public class FileServiceTest {
 
