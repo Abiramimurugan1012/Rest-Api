@@ -101,7 +101,6 @@ public class RegisterControllerTest {
         ResponseEntity<?> responseEntity = registerController.getDetailsUsingToken("Bearer " + token);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(user, responseEntity.getBody());
-
     }
 
     @Test

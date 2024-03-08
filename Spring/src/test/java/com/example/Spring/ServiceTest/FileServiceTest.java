@@ -29,8 +29,6 @@ public class FileServiceTest {
     @Mock
     MultipartFile multipartFile;
 
-    @Mock
-    Files files;
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.openMocks(this);
