@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
 
 
 public class FileServiceTest {

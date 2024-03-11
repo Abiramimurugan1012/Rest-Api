@@ -32,6 +32,4 @@ public class  LoginController {
         return loginService.deleteuser(username);
     }
 
-
-
 }

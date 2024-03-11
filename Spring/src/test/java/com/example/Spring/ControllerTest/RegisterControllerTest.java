@@ -5,8 +5,6 @@ import com.example.Spring.Model.Register;
 import com.example.Spring.Repo.RegisterRepo;
 import com.example.Spring.Service.RegisterService;
 import io.jsonwebtoken.Claims;
-import org.apache.el.stream.Optional;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
