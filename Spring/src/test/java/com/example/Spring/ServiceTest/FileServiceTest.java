@@ -15,8 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
@@ -68,13 +67,6 @@ public class FileServiceTest {
             fileService.storeFile(multipartFile);
         });
     }
-
-
-
-
-
-
-
 
 
 }
