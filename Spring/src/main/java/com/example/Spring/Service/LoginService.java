@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class LoginService {
@@ -36,6 +37,8 @@ public class LoginService {
             return "User name is already register";
         }
     }
+
+
 
     public String login(Login data){
         Login get=loginRepo.findByUsername(data.getUsername());
@@ -69,6 +72,10 @@ public class LoginService {
         else {
             return "User not found";
         }
+    }
+
+    public List<Login> getAll(){
+        return loginRepo.findAll();
     }
 
 
