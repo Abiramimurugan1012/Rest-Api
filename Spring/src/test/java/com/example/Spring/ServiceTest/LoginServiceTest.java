@@ -11,6 +11,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 
 public class LoginServiceTest {
@@ -107,4 +110,11 @@ public class LoginServiceTest {
         Assertions.assertEquals(response,"User not found");
     }
 
+    @Test
+    public void getUser(){
+        List<Login> login= Arrays.asList();
+        when(loginRepo.findAll()).thenReturn(login);
+        List<Login> response=loginService.getAll();
+        Assertions.assertEquals(response,login);
+    }
 }

@@ -10,6 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 
 public class LoginControllerTest {
@@ -46,6 +50,14 @@ public class LoginControllerTest {
         when(loginService.deleteuser("")).thenReturn("");
         String response=loginController.delete("");
         Assertions.assertEquals(response,"");
+    }
+
+    @Test
+    public void get(){
+        List<Login> login= Arrays.asList();
+        when(loginService.getAll()).thenReturn(login);
+        List<Login> response=loginController.get();
+        Assertions.assertEquals(response,login);
     }
 
 }
