@@ -13,7 +13,10 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.WeakHashMap;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 public class AdminServiceTest {
@@ -35,7 +38,7 @@ public class AdminServiceTest {
         List<Admin> adminList = Arrays.asList(admin);
         when(adminRepo.findAll()).thenReturn(adminList);
         List<Admin> admin1=adminService.getAllEmployee();
-        Assertions.assertEquals(adminList,admin1);
+        assertEquals(adminList,admin1);
 
     }
 
@@ -44,7 +47,7 @@ public class AdminServiceTest {
         Admin admin=new Admin();
         when(adminRepo.save(admin)).thenReturn(admin);
         Admin admin1=adminService.addEmployee(admin);
-        Assertions.assertEquals(admin,admin1);
+        assertEquals(admin,admin1);
     }
 
     @Test
@@ -53,7 +56,7 @@ public class AdminServiceTest {
         Admin admin=new Admin();
         when(adminRepo.findById(id)).thenReturn(Optional.of(admin));
         Object response=adminService.getEmployeeById(id);
-        Assertions.assertEquals(response,response);
+        assertEquals(response,response);
     }
 
     @Test
@@ -61,7 +64,7 @@ public class AdminServiceTest {
         Long id=1L;
         when(adminRepo.findById(id)).thenReturn(Optional.empty());
         Object response=adminService.getEmployeeById(id);
-        Assertions.assertEquals("Employee not found......",response);
+        assertEquals("Employee not found......",response);
     }
 
     @Test
@@ -72,7 +75,7 @@ public class AdminServiceTest {
         when(adminRepo.findById(id)).thenReturn(Optional.of(admin));
         when(adminRepo.save(admin)).thenReturn(admin1);
         Admin response= adminService.updateEmployee(id, admin);
-        Assertions.assertEquals(admin1,response);
+        assertEquals(admin1,response);
 
     }
 
@@ -82,7 +85,7 @@ public class AdminServiceTest {
         Admin admin=new Admin();
         when(adminRepo.findById(id)).thenReturn(Optional.of(admin));
         String response=adminService.deleteEmployee(id);
-        Assertions.assertEquals("Deleted Successfully!!!!!!!",response);
+        assertEquals("Deleted Successfully!!!!!!!",response);
     }
 
     @Test
@@ -90,8 +93,30 @@ public class AdminServiceTest {
         Long id=1L;
         when(adminRepo.findById(id)).thenReturn(Optional.empty());
         String response=adminService.deleteEmployee(id);
-        Assertions.assertEquals("Not found.....",response);
+        assertEquals("Not found.....",response);
     }
 
+    @Test
+    void editEmail(){
+        Long id=1L;
+        String email="abc";
+        Admin admin=new Admin();
+        when(adminRepo.findById(id)).thenReturn(Optional.of(admin));
+        when(adminRepo.save(admin)).thenReturn(admin);
+        Admin response=adminService.updateEmail(id,email);
+        assertEquals(response,admin);
+
+    }
+
+    @Test
+    void emailNotFound(){
+        Long id=1L;
+        String email="abc";
+        when(adminRepo.findById(id)).thenReturn(Optional.empty());
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            adminService.updateEmail(id, email);
+        });
+        assertEquals("User not found", exception.getMessage());
+    }
 
 }

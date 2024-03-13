@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
@@ -34,7 +36,7 @@ public class UserServiceTest {
         List<User> userList= Arrays.asList(user);
         when(userRepo.findAll()).thenReturn(userList);
         List<User> response=userservice.getAllUser();
-        Assertions.assertEquals(userList,response);
+        assertEquals(userList,response);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class UserServiceTest {
         User user=new User();
         when(userRepo.save(user)).thenReturn(user);
         User response=userservice.addUser(user);
-        Assertions.assertEquals(user,response);
+        assertEquals(user,response);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class UserServiceTest {
         User user=new User();
         when(userRepo.findById(id)).thenReturn(Optional.of(user));
         Object response=userservice.getUserById(id);
-        Assertions.assertEquals(response,response);
+        assertEquals(response,response);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class UserServiceTest {
         Long id=1L;
         when(userRepo.findById(id)).thenReturn(Optional.empty());
         Object response=userservice.getUserById(id);
-        Assertions.assertEquals("User not found",response);
+        assertEquals("User not found",response);
     }
 
     @Test
@@ -70,7 +72,7 @@ public class UserServiceTest {
         when(userRepo.findById(id)).thenReturn(Optional.of(user));
         when(userRepo.save(user)).thenReturn(user1);
         User response=userservice.updateUser(id,user);
-        Assertions.assertEquals(user,response);
+        assertEquals(user,response);
     }
 
     @Test
@@ -79,7 +81,7 @@ public class UserServiceTest {
         User user=new User();
         when(userRepo.findById(id)).thenReturn(Optional.of(user));
         String response=userservice.deleteUser(id);
-        Assertions.assertEquals("Deleted Successfully!!!!!!",response);
+        assertEquals("Deleted Successfully!!!!!!",response);
 
     }
 
@@ -88,6 +90,28 @@ public class UserServiceTest {
         Long id=1L;
         when(userRepo.findById(id)).thenReturn(Optional.empty());
         String response=userservice.deleteUser(id);
-        Assertions.assertEquals("Not found.......",response);
+        assertEquals("Not found.......",response);
+    }
+
+    @Test
+    void updatePhno(){
+        Long id=1L;
+        int phno=111113;
+        User user=new User();
+        when(userRepo.findById(id)).thenReturn(Optional.of(user));
+        when(userRepo.save(user)).thenReturn(user);
+        User response=userservice.updatePhno(id,phno);
+        assertEquals(response,user);
+    }
+
+    @Test
+    void  phnoNotFound(){
+        Long id=1L;
+        int phno=12334;
+        when(userRepo.findById(id)).thenReturn(Optional.empty());
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            userservice.updatePhno(id,phno);
+        });
+        assertEquals("User not found", exception.getMessage());
     }
 }

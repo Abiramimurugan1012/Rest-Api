@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class RegisterServiceTest {
@@ -40,7 +42,7 @@ public class RegisterServiceTest {
         register.setAddress("cbe");
         when(registerRepo.findByUsername("Abi")).thenReturn(null);
         String reg=registerService.register(register);
-        Assertions.assertEquals(reg,"Saved Successfully");
+        assertEquals(reg,"Saved Successfully");
     }
 
     @Test
@@ -52,7 +54,7 @@ public class RegisterServiceTest {
         register.setAddress("cbe");
         when(registerRepo.findByUsername("Abi")).thenReturn(register);
         String reg=registerService.register(register);
-        Assertions.assertEquals(reg,"User name is already register");
+        assertEquals(reg,"User name is already register");
     }
 
     @Test
@@ -70,7 +72,7 @@ public class RegisterServiceTest {
         reg.setAge(12);
         reg.setAddress("cbe");
         String register1=registerService.login(reg);
-        Assertions.assertEquals(register1,"User not found");
+        assertEquals(register1,"User not found");
     }
     @Test
     public void token(){
@@ -103,7 +105,7 @@ public class RegisterServiceTest {
         reg.setUsername("Abi");
         reg.setPassword("345");
         String register1=registerService.login(reg);
-        Assertions.assertEquals(register1,"Enter valid password");
+        assertEquals(register1,"Enter valid password");
 
     }
 
@@ -115,7 +117,7 @@ public class RegisterServiceTest {
         when(registerRepo.findById(id)).thenReturn(Optional.of(register));
         when(registerRepo.save(register)).thenReturn(register1);
         Register reg=registerService.update(id,register);
-        Assertions.assertEquals(reg,register);
+        assertEquals(reg,register);
     }
 
     @Test
@@ -124,7 +126,7 @@ public class RegisterServiceTest {
         Register register=new Register();
         when(registerRepo.findById(id)).thenReturn(Optional.of(register));
         String reg=registerService.delete(id);
-        Assertions.assertEquals(reg,"Deleted Successfully");
+        assertEquals(reg,"Deleted Successfully");
 
     }
 
@@ -133,7 +135,7 @@ public class RegisterServiceTest {
         Long id=1L;
         when(registerRepo.findById(id)).thenReturn(Optional.empty());
         String reg=registerService.delete(id);
-        Assertions.assertEquals(reg,"User not Found");
+        assertEquals(reg,"User not Found");
     }
 
     @Test
@@ -141,7 +143,29 @@ public class RegisterServiceTest {
         List<Register> register= Arrays.asList();
         when(registerRepo.findAll()).thenReturn(register);
         List<Register> reg=registerService.getUser();
-        Assertions.assertEquals(reg,register);
+        assertEquals(reg,register);
+    }
+
+    @Test
+    public void editAge(){
+        Long id=1L;
+        int age=10;
+        Register register=new Register();
+        when(registerRepo.findById(id)).thenReturn(Optional.of(register));
+        when(registerRepo.save(register)).thenReturn(register);
+        Register response=registerService.updateAge(id,age);
+        assertEquals(response,register);
+    }
+
+    @Test
+    public void ageNotFound(){
+        Long id=1L;
+        int age=10;
+        when(registerRepo.findById(id)).thenReturn(Optional.empty());
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            registerService.updateAge(id,age);
+        });
+        assertEquals("User not found", exception.getMessage());
     }
 
 
