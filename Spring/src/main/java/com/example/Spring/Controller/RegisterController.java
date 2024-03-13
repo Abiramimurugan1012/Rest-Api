@@ -75,6 +75,20 @@ public class RegisterController {
     }
 
 
+    @PatchMapping("/patch/{id}")
+
+    public String updateAge(@PathVariable Long id, @RequestBody Register register) {
+        try {
+            int age = register.getAge();
+            Register updatedUser = registerService.updateAge(id, age);
+            return "Age updated successfully";
+        } catch (IllegalArgumentException e) {
+            return "Not found";
+        }
+    }
+
+
+
 
 
 

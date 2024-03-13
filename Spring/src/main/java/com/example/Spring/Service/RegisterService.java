@@ -101,4 +101,17 @@ public class RegisterService {
         return registerRepo.findAll();
     }
 
+    public Register updateAge(Long id,int age){
+        Optional<Register> register=registerRepo.findById(id);
+        if(register.isPresent()){
+            Register user=register.get();
+            user.setAge(age);
+            return registerRepo.save(user);
+        }
+        else {
+            throw new IllegalArgumentException("User not found");
+        }
+
+    }
+
 }
