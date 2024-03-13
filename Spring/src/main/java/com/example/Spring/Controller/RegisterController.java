@@ -76,7 +76,6 @@ public class RegisterController {
 
 
     @PatchMapping("/patch/{id}")
-
     public String updateAge(@PathVariable Long id, @RequestBody Register register) {
         try {
             int age = register.getAge();

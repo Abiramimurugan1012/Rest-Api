@@ -54,4 +54,16 @@ public class AdminService {
 
     }
 
+    public Admin updateemail(Long id,String email){
+        Optional<Admin> admin=adminRepo.findById(id);
+        if (admin.isPresent()){
+            Admin user=admin.get();
+            user.setEmail(email);
+            return adminRepo.save(user);
+        }
+        else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
+
 }

@@ -49,4 +49,19 @@ public class Usercontroller {
         return  userservice.deleteUser(id);
     }
 
+
+    @PatchMapping("/patch/{id}")
+    public String editPhone(@PathVariable Long id,@RequestBody User user){
+        try {
+            int phno= user.getPhone_no();
+            userservice.updatephno(id,phno);
+            return "Phone number changed";
+        }
+        catch (IllegalArgumentException e){
+            return "Not Found";
+        }
+
+    }
+
+
 }

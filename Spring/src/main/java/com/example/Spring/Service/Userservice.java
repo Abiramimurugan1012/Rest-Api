@@ -53,5 +53,17 @@ public class Userservice {
             return "Not found.......";
         }
     }
+
+    public User updatephno(Long id,int phno){
+        Optional<User> user=userRepo.findById(id);
+        if(user.isPresent()){
+            User user1=user.get();
+            user1.setPhone_no(phno);
+            return userRepo.save(user1);
+        }
+        else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
 }
 
