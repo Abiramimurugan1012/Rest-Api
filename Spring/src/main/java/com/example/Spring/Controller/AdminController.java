@@ -58,7 +58,7 @@ public class AdminController {
     public String editEmail(@PathVariable Long id,@RequestBody Admin admin){
         try {
             String email=admin.getEmail();
-            adminService.updateemail(id,email);
+            adminService.updateEmail(id,email);
             return "Email changed";
         }
         catch (IllegalArgumentException e){

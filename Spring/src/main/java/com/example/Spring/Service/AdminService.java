@@ -54,7 +54,7 @@ public class AdminService {
 
     }
 
-    public Admin updateemail(Long id,String email){
+    public Admin updateEmail(Long id,String email){
         Optional<Admin> admin=adminRepo.findById(id);
         if (admin.isPresent()){
             Admin user=admin.get();

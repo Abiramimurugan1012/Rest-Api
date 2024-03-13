@@ -54,7 +54,7 @@ public class Userservice {
         }
     }
 
-    public User updatephno(Long id,int phno){
+    public User updatePhno(Long id,int phno){
         Optional<User> user=userRepo.findById(id);
         if(user.isPresent()){
             User user1=user.get();

@@ -54,7 +54,7 @@ public class Usercontroller {
     public String editPhone(@PathVariable Long id,@RequestBody User user){
         try {
             int phno= user.getPhone_no();
-            userservice.updatephno(id,phno);
+            userservice.updatePhno(id,phno);
             return "Phone number changed";
         }
         catch (IllegalArgumentException e){
