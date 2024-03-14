@@ -89,4 +89,26 @@ public class UserControllerTest {
         String response=usercontroller.deleteUser(id);
         assertEquals("",response);
     }
+
+    @Test
+    void updatePhno(){
+        Long id=1L;
+        int phno=1233;
+        User user=new User();
+        user.setPhone_no(phno);
+        when(userservice.updatePhno(id,phno)).thenReturn(user);
+        String response=usercontroller.editPhone(id,user);
+        assertEquals(response,"Phone number changed");
+    }
+
+    @Test
+    void phnoNotFound(){
+        Long id=1L;
+        int phno=1123;
+        User user=new User();
+        user.setPhone_no(phno);
+        when(userservice.updatePhno(id,phno)).thenThrow(new IllegalArgumentException("not found"));
+        String response=usercontroller.editPhone(id,user);
+        assertEquals(response,"Not Found");
+    }
 }

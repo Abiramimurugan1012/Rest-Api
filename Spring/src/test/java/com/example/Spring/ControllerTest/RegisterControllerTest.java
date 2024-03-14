@@ -133,6 +133,30 @@ public class RegisterControllerTest {
     }
 
 
+    @Test
+    public void updateAge(){
+        Long id=1L;
+        int age=10;
+        Register register=new Register();
+        register.setAge(age);
+        when(registerService.updateAge(id,age)).thenReturn(register);
+        String response=registerController.updateAge(id,register);
+        assertEquals(response,"Age updated successfully");
+    }
+
+    @Test
+    public void ageNotFound(){
+        Long id=1L;
+        int age=10;
+        Register register=new Register();
+        register.setAge(age);
+        when(registerService.updateAge(id,age)).thenThrow(new IllegalArgumentException("Not found"));
+        String response=registerController.updateAge(id,register);
+        assertEquals(response,"Not found");
+    }
+
+
+
 
 
 }

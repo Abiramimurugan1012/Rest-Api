@@ -3,6 +3,7 @@ package com.example.Spring.ControllerTest;
 import com.example.Spring.Controller.AdminController;
 import com.example.Spring.Model.Admin;
 import com.example.Spring.Service.AdminService;
+import org.apache.el.stream.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,16 +70,15 @@ public class AdminControllerTest {
         Assertions.assertEquals(response,response);
 
     }
-
-        @Test
-        void updateEmployee () {
-            long id = 1L;
-            Admin admin = new Admin();
-            admin.setId(id);
-            when(adminService.updateEmployee(id, admin)).thenReturn(admin);
-            ResponseEntity<?> response = adminController.updateDetail(id, admin);
-            assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals("Successfully updated!!!", response.getBody());
+    @Test
+    void updateEmployee () {
+        long id = 1L;
+        Admin admin = new Admin();
+        admin.setId(id);
+        when(adminService.updateEmployee(id, admin)).thenReturn(admin);
+        ResponseEntity<?> response = adminController.updateDetail(id, admin);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Successfully updated!!!", response.getBody());
         }
 
         @Test
@@ -103,6 +103,30 @@ public class AdminControllerTest {
 
 
         }
+
+
+        @Test
+        void updateEmail(){
+        Long id=1L;
+        String email="abc";
+        Admin admin=new Admin();
+        when(adminService.updateEmail(id,email)).thenReturn(admin);
+        String response=adminController.editEmail(id,admin);
+        Assertions.assertEquals(response,"Email changed");
+
+       }
+
+    @Test
+    public void testEditEmail_UserNotFound() {
+        Long id = 1L;
+        String email = "test@example.com";
+        Admin admin = new Admin();
+        admin.setEmail(email);
+        when(adminService.updateEmail(id, email)).thenThrow(new IllegalArgumentException("User not found"));
+        String response = adminController.editEmail(id, admin);
+        assertEquals("Not found", response);
+    }
+
 
 
 
