@@ -1,7 +1,5 @@
 package com.example.Spring.Controller;
 
-
-import com.example.Spring.Model.Login;
 import com.example.Spring.Model.Register;
 import com.example.Spring.Repo.RegisterRepo;
 import com.example.Spring.Service.RegisterService;

@@ -1,13 +1,11 @@
 package com.example.Spring.Service;
 
 import com.example.Spring.Model.Login;
-import com.example.Spring.Model.Register;
 import com.example.Spring.Repo.LoginRepo;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

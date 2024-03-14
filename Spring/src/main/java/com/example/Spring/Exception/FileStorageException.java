@@ -1,6 +1,5 @@
 package com.example.Spring.Exception;
 
-import java.io.IOException;
 
 public class FileStorageException extends RuntimeException{
     public FileStorageException(String message) {

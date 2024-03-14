@@ -4,8 +4,6 @@ import com.example.Spring.Controller.FileController;
 import com.example.Spring.Service.FileService;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;

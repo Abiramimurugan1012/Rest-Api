@@ -10,10 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.mockito.Mockito.when;
 
 public class LoginServiceTest {
