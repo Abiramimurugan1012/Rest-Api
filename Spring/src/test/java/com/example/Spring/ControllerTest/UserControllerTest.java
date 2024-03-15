@@ -104,23 +104,33 @@ public class UserControllerTest {
 
     @Test
     void updatePhno(){
-        Long id=1L;
-        String phno="1233";
-        User user=new User();
-        user.setPhone_no(phno);
-        when(userservice.updatePhno(id,phno)).thenReturn(user);
-        String response=usercontroller.editPhone(id,user);
-        assertEquals(response,"Phone number changed");
+        User user = new User();
+        user.setPhone_no("1234567890");
+        when(userservice.updatePhno(anyLong(), anyString())).thenReturn(user);
+        ResponseEntity<String> responseEntity = usercontroller.editPhone(1L, user);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals("Phone number changed", responseEntity.getBody());
+        verify(userservice, times(1)).updatePhno(1L, "1234567890");
     }
 
     @Test
     void phnoNotFound(){
-        Long id=1L;
-        String phno="1123";
-        User user=new User();
-        user.setPhone_no(phno);
-        when(userservice.updatePhno(id,phno)).thenThrow(new IllegalArgumentException("not found"));
-        String response=usercontroller.editPhone(id,user);
-        assertEquals(response,"Not Found");
+        User user = new User();
+        user.setPhone_no("123");
+        ResponseEntity<String> responseEntity = usercontroller.editPhone(1L, user);
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals("Invalid phone number format. Please enter 10 digits.", responseEntity.getBody());
+        verify(userservice, never()).updatePhno(anyLong(), anyString());
+    }
+
+    @Test
+    public void testEditPhone_UserServiceThrowsIllegalArgumentException() {
+        User user = new User();
+        user.setPhone_no("1234567890");
+        when(userservice.updatePhno(anyLong(), anyString())).thenThrow(new IllegalArgumentException());
+        ResponseEntity<String> responseEntity = usercontroller.editPhone(1L, user);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals("Not Found", responseEntity.getBody());
+        verify(userservice, times(1)).updatePhno(1L, "1234567890");
     }
 }

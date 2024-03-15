@@ -59,14 +59,19 @@ public class Usercontroller {
 
 
     @PatchMapping("/patch/{id}")
-    public String editPhone(@PathVariable Long id,@RequestBody User user){
+    public ResponseEntity<String> editPhone(@PathVariable Long id, @RequestBody User user){
+        String phoneNumber = user.getPhone_no();
+        if (!isValidPhoneNumber(phoneNumber)) {
+            String message = "Invalid phone number format. Please enter 10 digits.";
+            return ResponseEntity.badRequest().body(message);
+        }
         try {
             String phno= user.getPhone_no();
             userservice.updatePhno(id,phno);
-            return "Phone number changed";
+            return ResponseEntity.ok("Phone number changed");
         }
         catch (IllegalArgumentException e){
-            return "Not Found";
+            return ResponseEntity.ok("Not Found");
         }
 
     }
