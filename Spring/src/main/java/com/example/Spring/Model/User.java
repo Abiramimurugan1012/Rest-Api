@@ -19,7 +19,7 @@ public class User {
     private long id;
     private String name;
     private String address;
-    private int phone_no;
+    private String phone_no;
 
 
 

@@ -3,8 +3,11 @@ package com.example.Spring.Service;
 import com.example.Spring.Model.User;
 import com.example.Spring.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +24,9 @@ public class Userservice {
         return userRepo.save(user);
     }
 
-    public Object getUserById(Long id) {
+
+
+        public Object getUserById(Long id) {
         Optional<User> user=userRepo.findById(id);
         if (user.isPresent()){
             return user;
@@ -53,7 +58,7 @@ public class Userservice {
         }
     }
 
-    public User updatePhno(Long id,int phno){
+    public User updatePhno(Long id,String phno){
         Optional<User> user=userRepo.findById(id);
         if(user.isPresent()){
             User user1=user.get();

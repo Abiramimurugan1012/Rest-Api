@@ -93,7 +93,7 @@ public class UserServiceTest {
     @Test
     void updatePhno(){
         Long id=1L;
-        int phno=111113;
+        String phno="111113";
         User user=new User();
         when(userRepo.findById(id)).thenReturn(Optional.of(user));
         when(userRepo.save(user)).thenReturn(user);
@@ -104,7 +104,7 @@ public class UserServiceTest {
     @Test
     void  phnoNotFound(){
         Long id=1L;
-        int phno=12334;
+        String phno="12334";
         when(userRepo.findById(id)).thenReturn(Optional.empty());
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             userservice.updatePhno(id,phno);

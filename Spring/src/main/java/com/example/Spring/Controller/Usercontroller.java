@@ -22,8 +22,18 @@ public class Usercontroller {
     }
 
     @PostMapping("/id")
-    public User adduser(@RequestBody User user){
-        return userservice.addUser(user);
+    public ResponseEntity<Object> addUser(@RequestBody User user) {
+        if (!isValidPhoneNumber(user.getPhone_no())) {
+            String message = "Invalid phone number format. Please enter 10 digits.";
+            return ResponseEntity.badRequest().body(message);
+        }
+
+        User savedUser = userservice.addUser(user);
+        return ResponseEntity.ok(savedUser);
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber != null && phoneNumber.matches("\\d{10}");
     }
 
     @GetMapping("/{id}")
@@ -51,7 +61,7 @@ public class Usercontroller {
     @PatchMapping("/patch/{id}")
     public String editPhone(@PathVariable Long id,@RequestBody User user){
         try {
-            int phno= user.getPhone_no();
+            String phno= user.getPhone_no();
             userservice.updatePhno(id,phno);
             return "Phone number changed";
         }

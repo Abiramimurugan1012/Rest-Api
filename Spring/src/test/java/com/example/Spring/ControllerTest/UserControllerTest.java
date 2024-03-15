@@ -41,12 +41,27 @@ public class UserControllerTest {
     }
 
     @Test
-    void addUser(){
-        User user=new User();
-        user.setName("");
+    void addUserInvalidPhno() {
+        User user = new User();
+        user.setName("John");
+        user.setAddress("123 Main St");
+        user.setPhone_no("123");
+        ResponseEntity<Object> responseEntity = usercontroller.addUser(user);
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertEquals("Invalid phone number format. Please enter 10 digits.", responseEntity.getBody());
+
+    }
+
+    @Test
+    void addUservalidPhno() {
+        User user = new User();
+        user.setName("John");
+        user.setAddress("123 Main St");
+        user.setPhone_no("1234567890");
         when(userservice.addUser(user)).thenReturn(user);
-        User user1=usercontroller.adduser(user);
-        Assertions.assertEquals(user,user1);
+        ResponseEntity<Object> responseEntity = usercontroller.addUser(user);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(user, responseEntity.getBody());
     }
 
     @Test
@@ -90,7 +105,7 @@ public class UserControllerTest {
     @Test
     void updatePhno(){
         Long id=1L;
-        int phno=1233;
+        String phno="1233";
         User user=new User();
         user.setPhone_no(phno);
         when(userservice.updatePhno(id,phno)).thenReturn(user);
@@ -101,7 +116,7 @@ public class UserControllerTest {
     @Test
     void phnoNotFound(){
         Long id=1L;
-        int phno=1123;
+        String phno="1123";
         User user=new User();
         user.setPhone_no(phno);
         when(userservice.updatePhno(id,phno)).thenThrow(new IllegalArgumentException("not found"));
